@@ -1,3 +1,21 @@
+<?php 
+require_once 'vendor/autoload.php'; 
+Twig_Autoloader::register();
+
+$loader = new Twig_Loader_Filesystem('template');
+$twig = new Twig_Environment($loader, array(
+    'cache' => 'compilation_cache',
+    'debug' => true,
+    'cache' => false,
+));
+$template = $twig->loadTemplate('index.html');
+
+echo $twig->render('index.html', array(
+  'title' => 'Fast Image Uploader',
+  'description' => 'A fast way to upload images to the web',
+)); 
+?>
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -11,12 +29,6 @@ function pm( $variable ){
 }
 
 ?>
-
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
 
 <?php
 $dir = 'uploads/';
