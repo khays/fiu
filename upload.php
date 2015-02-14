@@ -46,6 +46,25 @@ if ($uploadOk == 0) {
 }
 
 if ($uploadOk == 1){
+  $size = getimagesize($target_file);
+  $ratio = $size[0]/$size[1];
+  if ($ratio > 1){
+    $width = 100;
+    $height = 100/$ratio;
+  } else {
+    $width = 100*$ratio;
+    $height = 100;
+  }
+
+  $src = imagecreatefromstring(file_get_contents($target_file));
+  $dst = imagecreatetruecolor($width,$height);
+  imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
+  imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
+
+
+
+
+
   print '<img src=' . $target_file . ' />';
 }
 ?>

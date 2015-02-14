@@ -10,38 +10,19 @@ $twig = new Twig_Environment($loader, array(
 ));
 $template = $twig->loadTemplate('index.html');
 
-echo $twig->render('index.html', array(
-  'title' => 'Fast Image Uploader',
-  'description' => 'A fast way to upload images to the web',
-)); 
-?>
-
-<!DOCTYPE html>
-<html>
-<body>
-
-<?php
-
-function pm( $variable ){
-  print '<pre>';
-  print_r($variable);
-  print '</pre>';
-}
-
-?>
-
-<?php
-$dir = 'uploads/';
+// Build an array of loaded images, saved as $files
+$dir = 'uploads/thumbs/';
 $files = scandir($dir);
 $removed = array_shift($files);
 $removed = array_shift($files);
 
-pm($files);
 
-foreach ($files as $file){
-  print '<img src=' . $dir . $file . ' height="100px" width="100px" />';
-}
+// Pass all variables to the template
+echo $twig->render('index.html', array(
+  'title' => 'Fast Image Uploader',
+  'description' => 'A fast way to upload images to the web',
+  'files' => $files,
+)); 
 ?>
 
-</body>
-</html>
+

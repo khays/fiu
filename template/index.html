@@ -31,6 +31,12 @@
         <p>{{ forms.input('fileToUpload', null, 'file') }}</p>
         <p>{{ forms.input('submit', 'Upload Image', 'submit') }}</p>
         </form>
+        
+        <ul id="listOfFiles">
+        {% for file in files %}
+          <li><img src="uploads/thumbs/{{ file }}" /></li>
+        {% endfor %}
+        </ul>
 
         </content>
 
