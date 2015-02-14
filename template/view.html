@@ -26,6 +26,8 @@
 
         <content>
 
+        <img src="{{ image }}" />
+
         <form action="upload.php" method="post" enctype="multipart/form-data">
         {% import "forms.html" as forms %}
         <p>{{ forms.input('fileToUpload', null, 'file') }}</p>
