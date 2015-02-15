@@ -16,7 +16,7 @@ $target_file = $_GET["file"];
 
 // Pass all variables to the template
 echo $twig->render('view.html', array(
-  'title' => 'A View Page',
+  'title' => 'Fast Image Uploader',
   'description' => $message,
   'image' => $target_file,
 )); 

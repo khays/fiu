@@ -94,7 +94,7 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-header{
+header, footer{
   width: 72%;
   padding:2% 4%;
   max-width:960px;
@@ -115,9 +115,16 @@ content img{
   max-width:100%;
 }
 
+ul#uploadedImages{
+  margin:0;
+  list-style:none;
+  padding:0;
+  }
 
 
-
+ul#uploadedImages li{
+  display:inline-block;
+}
 
 
 

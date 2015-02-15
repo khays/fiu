@@ -1,49 +1,23 @@
-<!doctype html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ title }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% include 'header.html' %}        
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+<content>
 
-        <link rel="stylesheet" href="template/css/normalize.css">
-        <link rel="stylesheet" href="template/css/main.css">
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+  <img src="{{ image }}" />
+  
+  <h2>Upload another?</h2>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    {% import "forms.html" as forms %}
+    <p>{{ forms.input('fileToUpload', null, 'file') }}</p>
+    <p>{{ forms.input('tags', null, 'text', 20, 'tags') }}</p>
+    <p>{{ forms.input('submit', 'Upload Image', 'submit') }}</p>
+  </form>
 
-        <!-- Add your site or application content here -->
-        <header>
-          <h1><a href="/">{{ title }}</a></h1>
-          <p>{{ description }}</p>
-        </header>
+  <ul id="listOfFiles">
+  {% for file in files %}
+    <li><img src="uploads/thumbs/{{ file }}" /></li>
+  {% endfor %}
+  </ul>
 
-        <content>
+</content>
 
-        <img src="{{ image }}" />
-
-        <form action="upload.php" method="post" enctype="multipart/form-data">
-        {% import "forms.html" as forms %}
-        <p>{{ forms.input('fileToUpload', null, 'file') }}</p>
-        <p>{{ forms.input('submit', 'Upload Image', 'submit') }}</p>
-        </form>
-        
-        <ul id="listOfFiles">
-        {% for file in files %}
-          <li><img src="uploads/thumbs/{{ file }}" /></li>
-        {% endfor %}
-        </ul>
-
-        </content>
-
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-    </body>
-</html>
+{% include 'footer.html' %}        

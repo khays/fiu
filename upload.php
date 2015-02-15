@@ -1,10 +1,19 @@
 <?php
 $target_dir = "uploads/";
 $timestamp = date('Ymdhis');
+$tags = $_POST['tags'];
+if ($tags != ''){ 
+  $tag_list = explode(' ', $tags);
+  $tag_filename = '';
+  foreach ($tag_list as $tag){
+    $tag_filename .= '-';
+    $tag_filename .= $tag;
+  }
+}
 
 $original_path = $_FILES['fileToUpload']['name'];
 $extension = end(explode(".", $original_path));
-$target_file = $target_dir . $timestamp . '.' . $extension;
+$target_file = $target_dir . $timestamp . $tag_filename . '.' . $extension;
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
@@ -63,7 +72,7 @@ if ($uploadOk == 1){
   imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
   imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
 
-  header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
+header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
 
 
 

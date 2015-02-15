@@ -1,3 +1,9 @@
-{% macro input(name, value, type, size) %}
-    <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
+{% macro input(name, value, type, size, placeholder) %}
+    <input 
+      type="{{ type|default('text') }}" 
+      name="{{ name }}" 
+      value="{{ value|e }}" 
+      size="{{ size|default(20) }}" 
+      placeholder="{{ placeholder }}"
+    />
 {% endmacro %}

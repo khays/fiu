@@ -15,6 +15,7 @@ $dir = 'uploads/thumbs/';
 $files = scandir($dir);
 $removed = array_shift($files);
 $removed = array_shift($files);
+$files = array_reverse($files);
 
 
 // Pass all variables to the template
