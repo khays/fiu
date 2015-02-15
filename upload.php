@@ -18,11 +18,12 @@ if (file_exists($thumb_dir)){
 }
 
 // Setting filename
+date_default_timezone_set('America/Los_Angeles');
 $timestamp = date('Ymdhis');
 $tags = $_POST['tags'];
+$tag_filename = '';
 if ($tags != ''){ 
   $tag_list = explode(' ', $tags);
-  $tag_filename = '';
   foreach ($tag_list as $tag){
     $tag_filename .= '-';
     $tag_filename .= $tag;
@@ -88,7 +89,11 @@ if ($uploadOk == 1){
   $src = imagecreatefromstring(file_get_contents($target_file));
   $dst = imagecreatetruecolor($width,$height);
   imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-  imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
+  if ($extension == 'jpg'){
+    imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
+  } elseif ($extention == 'png') {
+    imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
+  }
 
 header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
 
