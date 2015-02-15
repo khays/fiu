@@ -7,14 +7,14 @@ if (file_exists($target_dir)){
   print 'it is there';
 } else {
   print 'it is not there, creating';
-  mkdir($target_dir);
+  mkdir($target_dir, 0770);
 }
 
 if (file_exists($thumb_dir)){
   print 'thumb it is there';
 } else {
   print 'it is not there, creating';
-  mkdir($thumb_dir);
+  mkdir($thumb_dir, 0770);
 }
 
 // Setting filename
