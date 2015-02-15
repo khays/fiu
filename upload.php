@@ -86,13 +86,26 @@ if ($uploadOk == 1){
     $height = 100;
   }
 
+
   $src = imagecreatefromstring(file_get_contents($target_file));
   $dst = imagecreatetruecolor($width,$height);
   imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
-  if ($extension == 'jpg'){
-    imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
-  } elseif ($extention == 'png') {
-    imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
+  
+  print $extension;
+  $extension = strtolower($extension);
+  switch ($extension){
+    case "jpg":
+      print 'this is a jpeg';
+      imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
+      break;
+    case "png";
+      print 'this is a png';
+      imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
+      break;
+    case "gif";
+      print 'this is a png';
+      imagegif($dst, 'uploads/thumbs/' . $timestamp . '.gif');
+      break;
   }
 
 header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
