@@ -1,5 +1,23 @@
 <?php
+// Testing to make sure directory exists
 $target_dir = "uploads/";
+$thumb_dir = "uploads/thumbs/";
+
+if (file_exists($target_dir)){
+  print 'it is there';
+} else {
+  print 'it is not there, creating';
+  mkdir($target_dir);
+}
+
+if (file_exists($thumb_dir)){
+  print 'thumb it is there';
+} else {
+  print 'it is not there, creating';
+  mkdir($thumb_dir);
+}
+
+// Setting filename
 $timestamp = date('Ymdhis');
 $tags = $_POST['tags'];
 if ($tags != ''){ 
