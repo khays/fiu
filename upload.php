@@ -4,16 +4,12 @@ $target_dir = "uploads/";
 $thumb_dir = "uploads/thumbs/";
 
 if (file_exists($target_dir)){
-  print 'it is there';
 } else {
-  print 'it is not there, creating';
   mkdir($target_dir, 0770);
 }
 
 if (file_exists($thumb_dir)){
-  print 'thumb it is there';
 } else {
-  print 'it is not there, creating';
   mkdir($thumb_dir, 0770);
 }
 
@@ -91,28 +87,18 @@ if ($uploadOk == 1){
   $dst = imagecreatetruecolor($width,$height);
   imagecopyresampled($dst,$src,0,0,0,0,$width,$height,$size[0],$size[1]);
   
-  print $extension;
   $extension = strtolower($extension);
   switch ($extension){
     case "jpg":
-      print 'this is a jpeg';
       imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
       break;
     case "png";
-      print 'this is a png';
       imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
       break;
     case "gif";
-      print 'this is a png';
       imagegif($dst, 'uploads/thumbs/' . $timestamp . '.gif');
       break;
-  }
-
-header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
-
-
-
-
-
+  } 
 }
+header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
 ?>
