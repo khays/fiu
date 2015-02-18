@@ -3,6 +3,7 @@
 <!-- Header info above -->
 <content>
 
+  <!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
   <form action="upload.php" method="post" enctype="multipart/form-data">
     {% import "forms.html" as forms %}
     <p>{{ forms.input('fileToUpload', null, 'file') }}</p>
