@@ -10,7 +10,11 @@ $twig = new Twig_Environment($loader, array(
 ));
 $template = $twig->loadTemplate('view.html');
 
-$message = $_GET["message"];
+if(isset($_GET["message"])){
+  $message = $_GET["message"];
+} else {
+  $message = '';
+}
 $target_file = $_GET["file"];
 
 
@@ -18,7 +22,7 @@ $target_file = $_GET["file"];
 echo $twig->render('view.html', array(
   'title' => 'Fast Image Uploader',
   'description' => $message,
-  'image' => $target_file,
+  'image' => 'uploads/' . $target_file,
 )); 
 ?>
 

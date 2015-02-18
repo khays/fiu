@@ -28,7 +28,8 @@ if ($tags != ''){
 
 $original_path = $_FILES['fileToUpload']['name'];
 $extension = end(explode(".", $original_path));
-$target_file = $target_dir . $timestamp . $tag_filename . '.' . $extension;
+$short_file = $timestamp . $tag_filename . '.' . $extension;
+$target_file = $target_dir . $short_file;
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
@@ -92,6 +93,9 @@ if ($uploadOk == 1){
     case "jpg":
       imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
       break;
+    case "jpeg":
+      imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpeg');
+      break;
     case "png";
       imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
       break;
@@ -100,5 +104,5 @@ if ($uploadOk == 1){
       break;
   } 
 }
-header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($target_file));
+header("Location: view.php?message=" . urlencode($message) . "&file=" . urlencode($short_file));
 ?>

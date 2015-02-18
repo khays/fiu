@@ -40,7 +40,7 @@ print '<pre>';
 print_r( $imagedata );
 print '</pre>';
 
-
+//print phpinfo();
 
 /*
 $target_file = $target_dir . $timestamp . $tag_filename . '.' . $extension;

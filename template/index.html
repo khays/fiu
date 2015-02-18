@@ -15,7 +15,7 @@
 
   <ul id="uploadedImages">
     {% for file in files %}
-      <li><a href="/view.php?file=uploads/{{ file }}"><img src="uploads/thumbs/{{ file }}" /></a></li>
+      <li><a href="/view.php?file={{ file }}"><img src="uploads/thumbs/{{ file }}" /></a></li>
     {% endfor %}
   </ul>
 
