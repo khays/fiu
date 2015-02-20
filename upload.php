@@ -29,6 +29,7 @@ if ($tags != ''){
 $original_path = $_FILES['fileToUpload']['name'];
 $extension = end(explode(".", $original_path));
 $short_file = $timestamp . $tag_filename . '.' . $extension;
+$short_file_wo_ext = $timestamp . $tag_filename;
 $target_file = $target_dir . $short_file;
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -91,16 +92,16 @@ if ($uploadOk == 1){
   $extension = strtolower($extension);
   switch ($extension){
     case "jpg":
-      imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpg');
+      imagejpeg($dst, 'uploads/thumbs/' . $short_file_wo_ext . '.jpg');
       break;
     case "jpeg":
-      imagejpeg($dst, 'uploads/thumbs/' . $timestamp . '.jpeg');
+      imagejpeg($dst, 'uploads/thumbs/' . $short_file_wo_ext . '.jpeg');
       break;
     case "png";
-      imagepng($dst, 'uploads/thumbs/' . $timestamp . '.png');
+      imagepng($dst, 'uploads/thumbs/' . $short_file_wo_ext . '.png');
       break;
     case "gif";
-      imagegif($dst, 'uploads/thumbs/' . $timestamp . '.gif');
+      imagegif($dst, 'uploads/thumbs/' . $short_file_wo_ext . '.gif');
       break;
   } 
 }
