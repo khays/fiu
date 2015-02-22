@@ -18,7 +18,7 @@ $removed = array_shift($files);
 $files = array_reverse($files);
 
 //Find the tags on the file name, save to $all_tags
-$all_tags = [];
+$all_tags = array();
 foreach ($files as $file){
   $tags = '';
   // Isolate the tags
