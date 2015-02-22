@@ -32,7 +32,7 @@ $short_file = $timestamp . $tag_filename . '.' . $extension;
 $short_file_wo_ext = $timestamp . $tag_filename;
 $target_file = $target_dir . $short_file;
 $uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 $message = '';
 // Check if image file is a actual image or fake image
@@ -58,7 +58,7 @@ if ($_FILES["fileToUpload"]["size"] > 10000000) {
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" ) {
-    $message .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $message .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. You uploaded a $imageFileType file";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error

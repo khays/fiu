@@ -12,6 +12,13 @@ if (file_exists($thumb_dir)){
 } else {
   mkdir($thumb_dir, 0770);
 }
+$original_path = $_FILES['fileToUpload']['name'];
+$extension = end(explode(".", $original_path));
+$short_file = $timestamp . $tag_filename . '.' . $extension;
+$short_file_wo_ext = $timestamp . $tag_filename;
+$target_file = $target_dir . $short_file;
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 // Setting filename
 date_default_timezone_set('America/Los_Angeles');
@@ -39,6 +46,9 @@ $imagedata = getimagesize($file);
 print '<pre>';
 print_r( $imagedata );
 print '</pre>';
+print "<h2>Filetype</h2>";
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+print $imageFileType;
 
 //print phpinfo();
 
